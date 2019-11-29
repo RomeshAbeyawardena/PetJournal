@@ -71,5 +71,35 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Models.mb</DependentUpon>
     </Compile>
+    <Compile Update="Section.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Models.mb</DependentUpon>
+    </Compile>
+    <Compile Update="Dashboard.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Models.mb</DependentUpon>
+    </Compile>
+    <Compile Update="Folder.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Models.mb</DependentUpon>
+    </Compile>
+    <Compile Update="Image.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Models.mb</DependentUpon>
+    </Compile>
+    <Compile Update="File.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Models.mb</DependentUpon>
+    </Compile>
+    <Compile Update="Member.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Models.mb</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
