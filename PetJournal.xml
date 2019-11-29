@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<installation installDirectory="C:\Source\Repos" projectName="PetJournal">
+  <projects>
+    <project name="PetJournal.Web" path="C:\Source\Repos\PetJournal\PetJournal.Web" />
+    <project name="PetJournal.Broker" path="C:\Source\Repos\PetJournal\PetJournal.Broker" />
+    <project name="PetJournal.Contracts" path="C:\Source\Repos\PetJournal\PetJournal.Contracts" />
+    <project name="PetJournal.Data" path="C:\Source\Repos\PetJournal\PetJournal.Data" />
+    <project name="PetJournal.Domains" path="C:\Source\Repos\PetJournal\PetJournal.Domains" />
+    <project name="PetJournal.Services" path="C:\Source\Repos\PetJournal\PetJournal.Services" />
+    <project name="PetJournal.Shared" path="C:\Source\Repos\PetJournal\PetJournal.Shared" />
+  </projects>
+</installation>
