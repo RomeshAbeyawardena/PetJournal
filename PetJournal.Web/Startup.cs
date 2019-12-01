@@ -33,6 +33,9 @@ namespace PetJournal.Web
             }
 
             app.UseRouting();
+            app
+                .ApplicationServices
+                .SubscribeToAllNotifications();
 
             app.UseEndpoints(endpoints =>
             {

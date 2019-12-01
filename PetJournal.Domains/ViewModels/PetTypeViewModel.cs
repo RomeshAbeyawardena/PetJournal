@@ -5,12 +5,9 @@ using System.Text;
 
 namespace PetJournal.Domains.ViewModels
 {
-    public class PetBreedViewModel
+    public class PetTypeViewModel
     {
         public int Id { get; set; }
-
-        [Required]
-        public int PetTypeId { get;set; }
 
         [Required]
         public string ShortName { get; set; }

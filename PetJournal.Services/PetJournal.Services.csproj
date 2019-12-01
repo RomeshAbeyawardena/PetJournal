@@ -5,10 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Shared.Contracts" Version="1.0.2.16" />
-    <PackageReference Include="Shared.Domains" Version="1.0.2.16" />
-    <PackageReference Include="Shared.Library" Version="1.0.2.16" />
-    <PackageReference Include="Shared.Services" Version="1.0.2.16" />
+    <PackageReference Include="Shared.Contracts" Version="1.0.2.18" />
+    <PackageReference Include="Shared.Domains" Version="1.0.2.18" />
+    <PackageReference Include="Shared.Library" Version="1.0.2.18" />
+    <PackageReference Include="Shared.Services" Version="1.0.2.18" />
   </ItemGroup>
 
   <ItemGroup>

@@ -30,7 +30,7 @@ namespace PetJournal.Services.Providers
             return await cacheService.Set(cacheName, result);
         }
 
-        private ICacheService GetCacheService(CacheType cacheType) => _cacheFactory.GetCacheService(cacheType);
+        public ICacheService GetCacheService(CacheType cacheType) => _cacheFactory.GetCacheService(cacheType);
 
         public CacheProvider(ICacheFactory cacheFactory)
         {

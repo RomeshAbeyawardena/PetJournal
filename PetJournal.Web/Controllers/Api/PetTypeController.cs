@@ -3,6 +3,8 @@ using PetJournal.Domains.Constants;
 using PetJournal.Domains.Data;
 using PetJournal.Domains.ViewModels;
 using Shared.Contracts;
+using Shared.Domains;
+using Shared.Services;
 using Shared.Services.Extensions;
 using System;
 using System.Threading.Tasks;
@@ -22,14 +24,7 @@ namespace PetJournal.Web.Controllers.Api
                     .Add(Constants.PetTypeParameter, parameterValue); 
                 }));
 
-                if(foundPetType == null)
-                    throw new ArgumentException($"Unable to find {nameof(PetType)} with {petTypeId}", nameof(petTypeId));
-
-                var petBreeds = GetResults(await _mediator.Send<PetBreed>(Constants.GetPetBreeds, dictionary => {
-                    dictionary.Add(Constants.PetTypeBreedParameter, foundPetType);
-                }));
-
-                return Ok(petBreeds);
+                return Ok(foundPetType);
 
             }
             catch(ArgumentException ex)
@@ -39,13 +34,25 @@ namespace PetJournal.Web.Controllers.Api
         }
 
         [HttpPost]
-        public async Task<ActionResult> Save([FromForm] PetBreedViewModel petBreedViewModel)
+        public async Task<ActionResult> Save([FromForm] PetTypeViewModel petTypeViewModel)
         {
-            var petBreed = Map<PetBreedViewModel, PetBreed>(petBreedViewModel);
-            return Ok(await _mediator.Push(petBreed));
+            bool isNew = petTypeViewModel.Id == 0;
+
+            var petType = Map<PetTypeViewModel, PetType>(petTypeViewModel);
+
+            var savePetTypeEvent = await _mediator.Push(petType);
+
+            if(savePetTypeEvent.IsSuccessful)
+                await _mediator
+                    .NotifyAsync(DefaultEntityChangedEvent.Create(savePetTypeEvent.Result, 
+                        entityEventType: isNew 
+                        ? EntityEventType.Added 
+                        : EntityEventType.Updated));
+
+            return Ok(petType);
         }
 
-        public PetBreedController(IMediator mediator)
+        public PetTypeController(IMediator mediator)
         {
             _mediator = mediator;
         }

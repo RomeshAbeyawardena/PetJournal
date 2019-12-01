@@ -12,6 +12,7 @@ namespace PetJournal.Domains
         public DomainProfile()
         {
             CreateMap<PetBreedViewModel, PetBreed>();
+            CreateMap<PetTypeViewModel, PetType>();
         }
     }
 }
