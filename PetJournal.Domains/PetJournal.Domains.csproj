@@ -1,105 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net472</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Models.mb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Models.mb" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Umbraco.ModelsBuilder" Version="8.1.0" />
-    <PackageReference Include="UmbracoCms.Core" Version="8.3.0" />
-    <PackageReference Include="UmbracoCms.Web" Version="8.3.0" />
-  </ItemGroup>
-  <ItemGroup Label="DependentUpon:ModelsBuilder">
-    <Compile Update="Section.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Folder.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Image.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="File.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Member.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Section.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Dashboard.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Folder.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Image.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="File.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Member.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Section.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Dashboard.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Folder.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Image.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="File.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
-    <Compile Update="Member.generated.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Models.mb</DependentUpon>
-    </Compile>
+    <PackageReference Include="System.ComponentModel" Version="4.3.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.6.0" />
   </ItemGroup>
 </Project>
