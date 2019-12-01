@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PetJournal.Domains.Constants
+﻿namespace PetJournal.Domains.Constants
 {
     public partial class Constants
     {

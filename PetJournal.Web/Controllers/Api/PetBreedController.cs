@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using PetJournal.Contracts;
 using PetJournal.Domains.Constants;
 using PetJournal.Domains.Data;
 using Shared.Contracts;
@@ -16,23 +15,21 @@ namespace PetJournal.Web.Controllers.Api
         public async Task<ActionResult> GetPetBreeds([FromQuery]int? petTypeId, [FromQuery]string petType)
         {
             try{
-                var petTypes = await _mediator.Send<PetType>(Constants.GetPetType, dictionary => { 
+                var parameterValue = petTypeId.HasValue ? petTypeId.Value : (object)petType;
+
+                var foundPetType = GetResult(await _mediator.Send<PetType>(Constants.GetPetType, dictionary => { 
                     dictionary
-                    .Add(Constants.PetTypeParameter, petTypeId.HasValue ? petTypeId.Value : (object)petType); });
-
-                if(!petTypes.IsSuccessful)
-                    throw petTypes.Exception;
-
-                var foundPetType = petTypes.Result;
+                    .Add(Constants.PetTypeParameter, parameterValue); 
+                }));
 
                 if(foundPetType == null)
-                    throw new ArgumentException("", nameof(petTypeId));
+                    throw new ArgumentException($"Unable to find {nameof(PetType)} with ", nameof(petTypeId));
 
-                var petBreeds = await _mediator.Send<PetBreed>(Constants.GetPetBreed, dictionary => {
-                    dictionary.Add(Constants.PetTypeBreedParameter, foundPetType.Id);
-                });
+                var petBreeds = GetResults(await _mediator.Send<PetBreed>(Constants.GetPetBreeds, dictionary => {
+                    dictionary.Add(Constants.PetTypeBreedParameter, foundPetType);
+                }));
 
-                return Ok(petBreeds.Results);
+                return Ok(petBreeds);
 
             }
             catch(ArgumentException ex)

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PetJournal.Services
+﻿namespace PetJournal.Services
 {
     public class HttpService
     {

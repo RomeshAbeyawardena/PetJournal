@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PetJournal.Domains.Constants
+﻿namespace PetJournal.Domains.Constants
 {
     public partial class Constants
     {
         #region EventHandler Commands
         public const string GetPetType = "GetPetType";
-        public const string GetPetBreed = "GetPetBreed";
+        public const string GetPetBreeds = "GetPetBreeds";
         #endregion
 
         #region EventHandler Parameters

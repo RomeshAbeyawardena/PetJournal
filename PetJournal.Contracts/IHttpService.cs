@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PetJournal.Contracts
+﻿namespace PetJournal.Contracts
 {
     public class IHttpService
     {

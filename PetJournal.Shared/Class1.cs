@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PetJournal.Shared
+﻿namespace PetJournal.Shared
 {
     public class Class1
     {
