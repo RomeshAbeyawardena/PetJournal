@@ -6,10 +6,6 @@ namespace PetJournal.Data
 {
     public class PetJounalDbContext : ExtendedDbContext
     {
-        public PetJounalDbContext() : base(true)
-        {
-        }
-
         public PetJounalDbContext(DbContextOptions dbContextOptions) 
             : base(dbContextOptions, true)
         {

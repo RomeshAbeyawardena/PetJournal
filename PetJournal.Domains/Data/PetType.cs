@@ -1,8 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using MessagePack;
+using Key = System.ComponentModel.DataAnnotations.KeyAttribute;
 
 namespace PetJournal.Domains.Data
 {
+    [MessagePackObject(true)]
     public class PetType
     {
         [Key]

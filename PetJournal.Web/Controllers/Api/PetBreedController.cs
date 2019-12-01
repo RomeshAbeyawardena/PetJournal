@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PetJournal.Domains.Constants;
 using PetJournal.Domains.Data;
+using PetJournal.Domains.ViewModels;
 using Shared.Contracts;
 using Shared.Services.Extensions;
 using System;
@@ -12,7 +13,7 @@ namespace PetJournal.Web.Controllers.Api
     public class PetBreedController : ControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult> GetPetBreeds([FromQuery]int? petTypeId, [FromQuery]string petType)
+        public async Task<ActionResult> Get([FromQuery]int? petTypeId, [FromQuery]string petType)
         {
             try{
                 var parameterValue = petTypeId.HasValue ? petTypeId.Value : (object)petType;
@@ -23,7 +24,7 @@ namespace PetJournal.Web.Controllers.Api
                 }));
 
                 if(foundPetType == null)
-                    throw new ArgumentException($"Unable to find {nameof(PetType)} with ", nameof(petTypeId));
+                    throw new ArgumentException($"Unable to find {nameof(PetType)} with {petTypeId}", nameof(petTypeId));
 
                 var petBreeds = GetResults(await _mediator.Send<PetBreed>(Constants.GetPetBreeds, dictionary => {
                     dictionary.Add(Constants.PetTypeBreedParameter, foundPetType);
@@ -34,8 +35,15 @@ namespace PetJournal.Web.Controllers.Api
             }
             catch(ArgumentException ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Save([FromForm] PetBreedViewModel petBreedViewModel)
+        {
+            var petBreed = Map<PetBreedViewModel, PetBreed>(petBreedViewModel);
+            return Ok(await _mediator.Push(petBreed));
         }
 
         public PetBreedController(IMediator mediator)

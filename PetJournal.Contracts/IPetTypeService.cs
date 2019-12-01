@@ -9,6 +9,6 @@ namespace PetJournal.Contracts
         PetType GetPetTypeById(IEnumerable<PetType> petTypes, int petTypeId);
         Task<IEnumerable<PetType>> GetPetTypes();
         PetType GetTypeByName(IEnumerable<PetType> petTypes, string petTypeName);
-        Task<PetType> SavePetType(PetType result);
+        Task<PetType> SavePetType(PetType result, bool saveChanges = true);
     }
 }

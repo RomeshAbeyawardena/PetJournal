@@ -27,9 +27,9 @@ namespace PetJournal.Services
             return petTypes.SingleOrDefault(petType => petType.ShortName == petTypeName);
         }
 
-        public Task<PetType> SavePetType(PetType result)
+        public async Task<PetType> SavePetType(PetType result, bool saveChanges = true)
         {
-            throw new System.NotImplementedException();
+            return await _petTypeRepository.SaveChangesAsync(result, saveChanges);
         }
 
         public PetTypeService(IRepositoryFactory repositoryFactory)

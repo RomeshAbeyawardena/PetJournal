@@ -6,6 +6,7 @@ namespace PetJournal.Contracts
 {
     public interface IPetBreedService
     {
-        Task<IEnumerable<PetBreed>> GetPetBreedsByPetType(int petTypeId);
+        IEnumerable<PetBreed> GetPetBreedsByPetType(IEnumerable<PetBreed> petBreeds, int petTypeId);
+        Task<IEnumerable<PetBreed>> GetPetBreeds();
     }
 }

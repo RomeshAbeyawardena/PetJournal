@@ -4,6 +4,7 @@
     {
         #region Cache
             public const string PetTypeCache = "PetTypeCache";
+            public const string PetBreedCache = "PetBreedCache";
         #endregion
     }
 }
