@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PetJournal.Broker;
+using PetJournal.Domains;
 using Shared.Library.Extensions;
 using System.Reflection;
 
@@ -16,7 +17,9 @@ namespace PetJournal.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddAutoMapper(Assembly.GetExecutingAssembly())
+                .AddAutoMapper(
+                    Assembly.GetExecutingAssembly(), 
+                    Assembly.GetAssembly(typeof(DomainProfile)))
                 .RegisterServiceBroker<PetJournalServiceBroker>(ServiceLifetime.Scoped)
                 .AddMvc();
         }

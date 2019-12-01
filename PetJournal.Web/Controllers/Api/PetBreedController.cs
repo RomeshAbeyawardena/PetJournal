@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace PetJournal.Web.Controllers.Api
 {
-    [Route("api/{controller}/{action}", Order = 1)]
-    public class PetBreedController : ControllerBase
+    public class PetBreedController : ApiControllerBase
     {
         [HttpGet]
         public async Task<ActionResult> Get([FromQuery]int? petTypeId, [FromQuery]string petType)
