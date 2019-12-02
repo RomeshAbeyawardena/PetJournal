@@ -1,7 +1,7 @@
-﻿using PetJournal.Contracts.Providers;
-using PetJournal.Domains.Constants;
+﻿using PetJournal.Domains.Constants;
 using PetJournal.Domains.Data;
 using Shared.Contracts;
+using Shared.Contracts.Providers;
 using Shared.Library.Extensions;
 using Shared.Services;
 using System;
