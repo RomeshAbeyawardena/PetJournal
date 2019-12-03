@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PetJournal.Broker;
@@ -12,11 +13,18 @@ namespace PetJournal.Web
 {
     public class Startup
     {
+        private readonly ApplicationSettings _applicationSettings;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services
+                .AddDistributedMemoryCache(setup =>
+                {
+                    setup.SizeLimit =_applicationSettings.MemoryCacheSizeLimit;
+                    setup.ExpirationScanFrequency = _applicationSettings.MemoryCacheExpiration;
+                })
                 .AddAutoMapper(
                     Assembly.GetExecutingAssembly(), 
                     Assembly.GetAssembly(typeof(DomainProfile)))
@@ -39,6 +47,11 @@ namespace PetJournal.Web
                 endpoints
                     .MapControllers();
             });
+        }
+
+        public Startup(IConfiguration configuration)
+        {
+            _applicationSettings = new ApplicationSettings(configuration);
         }
     }
 }

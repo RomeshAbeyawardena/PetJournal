@@ -15,6 +15,7 @@ namespace PetJournal.Services
         {
             services
                 .AddSingleton<ApplicationSettings>()
+                .AddSingleton<ICacheEntityEventHandler, CacheEntityEventHandler>()
                 .AddScoped<IPetTypeService, PetTypeService>()
                 .AddScoped<IPetBreedService, PetBreedService>()
                 .RegisterDefaultEntityValueProvider<PetType>(options => options

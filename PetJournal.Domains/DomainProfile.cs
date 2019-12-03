@@ -11,7 +11,8 @@ namespace PetJournal.Domains
     {
         public DomainProfile()
         {
-            CreateMap<PetBreedViewModel, PetBreed>();
+            CreateMap<PetBreedViewModel, PetBreed>()
+                .ForMember(member => member.PetType, memberOptions => memberOptions.Ignore());
             CreateMap<PetTypeViewModel, PetType>();
         }
     }

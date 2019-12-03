@@ -28,7 +28,12 @@ namespace PetJournal.Services
         {
             return await _petBreedRepository.Where().ToArrayAsync();
         }
-        
+
+        public async Task<PetBreed> SavePetBreed(PetBreed petBreed, bool saveChanges = true)
+        {
+            return await _petBreedRepository.SaveChangesAsync(petBreed, saveChanges);
+        }
+
         private readonly IRepository<PetBreed> _petBreedRepository;
 
     }

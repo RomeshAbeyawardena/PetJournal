@@ -8,5 +8,6 @@ namespace PetJournal.Contracts
     {
         IEnumerable<PetBreed> GetPetBreedsByPetType(IEnumerable<PetBreed> petBreeds, int petTypeId);
         Task<IEnumerable<PetBreed>> GetPetBreeds();
+        Task<PetBreed> SavePetBreed(PetBreed petBreed, bool saveChanges = true);
     }
 }

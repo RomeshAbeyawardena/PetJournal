@@ -6,8 +6,9 @@ using Shared.Library.Extensions;
 using Shared.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using Shared.Domains.Enumerations;
 using System.Threading.Tasks;
+using PetJournal.Contracts;
 
 namespace PetJournal.Services.NotificationSubscribers
 {
@@ -20,19 +21,17 @@ namespace PetJournal.Services.NotificationSubscribers
 
         public override async Task OnChangeAsync(IEvent<PetType> @event)
         {
-            var cacheService = _cacheProvider.GetCacheService();
             if (! (@event is IEntityChangedEvent<PetType> petTypeChangedEvent) )
                 throw new NotSupportedException();
 
-            if (petTypeChangedEvent.EventType == Shared.Domains.EntityEventType.Added)
-                await cacheService.Append(Constants.PetTypeCache, @event.Result);
+            await _cacheEntityEventHandler.HandleEvent(Constants.PetTypeCache, petTypeChangedEvent.EventType, @event);
         }
 
-        public PetTypeNotificationSubscriber(ICacheProvider cacheProvider)
+        public PetTypeNotificationSubscriber(ICacheEntityEventHandler cacheEntityEventHandler)
         {
-            _cacheProvider = cacheProvider;
+            _cacheEntityEventHandler = cacheEntityEventHandler;
         }
 
-        private ICacheProvider _cacheProvider;
+        private readonly ICacheEntityEventHandler _cacheEntityEventHandler;
     }
 }

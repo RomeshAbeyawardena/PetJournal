@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using Microsoft.Extensions.Configuration;
 using _Constants = PetJournal.Domains.Constants.Constants;
 namespace PetJournal.Domains
 {
@@ -9,7 +10,8 @@ namespace PetJournal.Domains
             configuration.Bind(this);
             DefaultConnectionString = configuration.GetConnectionString(_Constants.DefaultConnectionString);
         }
-
+        public TimeSpan MemoryCacheExpiration { get;set;}
+        public long MemoryCacheSizeLimit { get; set; }
         public string DefaultConnectionString { get; set; }
     }
 }

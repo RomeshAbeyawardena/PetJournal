@@ -14,9 +14,14 @@ namespace PetJournal.Services.EventHandlers
     {
         private readonly IPetBreedService _petBreedService;
         private readonly ICacheProvider _cacheProvider;
-        public override Task<IEvent<PetBreed>> Push(IEvent<PetBreed> @event)
+        public override async Task<IEvent<PetBreed>> Push(IEvent<PetBreed> @event)
         {
-            throw new NotImplementedException();
+            if(!@event.IsSuccessful)
+                throw @event.Exception;
+
+            return DefaultEvent.Create(await _petBreedService.SavePetBreed(@event.Result));
+
+            throw @event.Exception;
         }
 
         public PetBreedEventHandler(ICacheProvider cacheProvider, IPetBreedService petBreedService)

@@ -3,10 +3,12 @@ using PetJournal.Domains.Constants;
 using PetJournal.Domains.Data;
 using PetJournal.Domains.ViewModels;
 using Shared.Contracts;
-using Shared.Domains;
+using Shared.Domains.Enumerations;
+using Shared.Library.Extensions;
 using Shared.Services;
 using Shared.Services.Extensions;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PetJournal.Web.Controllers.Api
@@ -19,7 +21,7 @@ namespace PetJournal.Web.Controllers.Api
             try{
                 var parameterValue = petTypeId.HasValue ? petTypeId.Value : (object)petType;
 
-                var foundPetType = GetResult(await _mediator.Send<PetType>(Constants.GetPetType, dictionary => { 
+                var foundPetType = GetResults(await _mediator.Send<PetType>(Constants.GetPetType, dictionary => { 
                     dictionary
                     .Add(Constants.PetTypeParameter, parameterValue); 
                 }));
@@ -40,23 +42,35 @@ namespace PetJournal.Web.Controllers.Api
 
             var petType = Map<PetTypeViewModel, PetType>(petTypeViewModel);
 
-            var savePetTypeEvent = await _mediator.Push(petType);
+            return await _semaphore.AsLockAsync(async() => {
+                
+                var existingPetTypeEventResult = await _mediator.Send<PetType>(Constants.GetPetType, dictionary => 
+                    dictionary.Add(Constants.PetTypeParameter, petType.ShortName));
 
-            if(savePetTypeEvent.IsSuccessful)
-                await _mediator
-                    .NotifyAsync(DefaultEntityChangedEvent.Create(savePetTypeEvent.Result, 
-                        entityEventType: isNew 
+                var existingPetType = GetResult(existingPetTypeEventResult);
+
+                if(existingPetType != null)
+                    throw new ArgumentException("Pet type of already exists", nameof(petType.ShortName));
+                
+                var savePetTypeEvent = await _mediator.Push(petType);
+
+                if(savePetTypeEvent.IsSuccessful)
+                    await _mediator
+                    .NotifyAsync(isNew 
                         ? EntityEventType.Added 
-                        : EntityEventType.Updated));
+                        : EntityEventType.Updated, savePetTypeEvent.Result);
 
-            return Ok(petType);
+                return Ok(petType);
+            });
         }
 
-        public PetTypeController(IMediator mediator)
+        public PetTypeController(IMediator mediator, SemaphoreSlim semaphore)
         {
             _mediator = mediator;
+            _semaphore = semaphore;
         }
-
+        
+        private readonly SemaphoreSlim _semaphore;
         private readonly IMediator _mediator;
     }
 }

@@ -14,8 +14,10 @@ namespace PetJournal.Services.EventHandlers
     {
         public override async Task<IEvent<PetType>> Push(IEvent<PetType> @event)
         {
-            if(@event.IsSuccessful)
-                return DefaultEvent.Create(await _petTypeService.SavePetType(@event.Result));
+            if(!@event.IsSuccessful)
+                throw @event.Exception;
+
+            return DefaultEvent.Create(await _petTypeService.SavePetType(@event.Result));
 
             throw @event.Exception;
         }
