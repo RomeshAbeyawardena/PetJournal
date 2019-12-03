@@ -5,6 +5,7 @@
         #region EventHandler Commands
         public const string GetPetType = "GetPetType";
         public const string GetPetBreeds = "GetPetBreeds";
+        public const string GetPetClassifications = "GetPetClassifications";
         #endregion
 
         #region EventHandler Parameters

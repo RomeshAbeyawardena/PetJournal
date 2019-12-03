@@ -13,5 +13,6 @@ namespace PetJournal.Data
 
         public virtual DbSet<PetType> PetTypes { get; set; }
         public virtual DbSet<PetBreed> PetBreeds { get; set; }
+        public virtual DbSet<PetClassification> PetClassifications { get; set; }
     }
 }
