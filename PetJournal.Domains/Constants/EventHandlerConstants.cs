@@ -11,6 +11,7 @@
         #region EventHandler Parameters
         public const string PetTypeParameter  = "PetTypeParameter";
         public const string PetTypeBreedParameter = "PetTypeBreedParameter";
+        public const string PetClassificationParameter = "PetClassificationParameter";
         #endregion
     }
 }

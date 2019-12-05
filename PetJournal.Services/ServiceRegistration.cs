@@ -18,6 +18,7 @@ namespace PetJournal.Services
                 .AddSingleton<ICacheEntityEventHandler, CacheEntityEventHandler>()
                 .AddScoped<IPetTypeService, PetTypeService>()
                 .AddScoped<IPetBreedService, PetBreedService>()
+                .AddScoped<IPetClassificationService, PetClassificationService>()
                 .RegisterDefaultEntityValueProvider<PetType>(options => options
                     .AddDefaults(EntityState.Added, (serviceProvider, petType) => { 
                         var clockProvider = serviceProvider.GetRequiredService<IClockProvider>();
