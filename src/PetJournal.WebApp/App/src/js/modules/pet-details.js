@@ -10,11 +10,15 @@ const findPet = (state, id) => {
 const petDetails = {
     state: {
         pets: [],
+        lastUpdated: null,
         isLoaded: false
     },
     mutations: {
         setIsPetsLoaded(state, value) {
             state.isLoaded = value;
+        },
+        setLastUpdated(state, value) {
+            state.lastUpdated = value;
         },
         addPet(state, pet) {
             state.pets.push(pet);
@@ -27,7 +31,7 @@ const petDetails = {
         },
         loadPets(state, pets) {
             state.pets = pets;
-        }
+        },
     },
     getters: {
         pets(state) {
@@ -46,8 +50,9 @@ const petDetails = {
             return petService
                 .getPets()
                 .then((pets) => { 
-                    context.commit('loadPets', pets);
-                    context.commit('setIsPetsLoaded', pets.length > 0)
+                    context.commit('loadPets', pets.data);
+                    context.commit('setIsPetsLoaded', pets.data.length > 0)
+                    context.commit("setLastUpdated", pets.lastUpdated)
                 });
         },
         savePet({commit, state}, pet) {

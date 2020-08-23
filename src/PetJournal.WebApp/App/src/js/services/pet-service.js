@@ -13,7 +13,11 @@ var dataSet = [{
 const petService = {
     getPets() {
         return new Promise((resolve, reject) => {
-            window.setTimeout(() => resolve(dataSet), 5000);
+            window.setTimeout(() => resolve(
+                { 
+                    data: dataSet, 
+                    lastUpdated: Date() 
+                }), 1000);
         });
     }
 };
