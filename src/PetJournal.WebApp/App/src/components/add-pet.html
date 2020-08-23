@@ -1,0 +1,17 @@
+﻿<div class="form">
+    <div>
+        <label>Id</label>
+        <input type="text" v-model="newPet.id" />
+    </div>
+    <div>
+        <label>Name</label>
+        <input type="text" v-model="newPet.name" />
+    </div>
+    <div>
+        <label>Date of Birth</label>
+        <input type="text" v-model="newPet.dateOfBirth" />
+    </div>
+    <div>
+        <input type="button" value="Save Pet" v-on:click="savePet(newPet)" />
+    </div>
+</div>

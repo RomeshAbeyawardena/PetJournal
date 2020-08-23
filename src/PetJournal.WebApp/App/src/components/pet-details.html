@@ -1,0 +1,13 @@
+<div>
+    <p>Pet Details</p>
+    <ul v-show="selectedPet">
+        <li>{{ selectedPet?.id }}</li>
+        <li>{{ selectedPet?.name }}</li>
+        <li>{{ selectedPet?.dateOfBirth }}</li>
+    </ul>
+    <ul v-for="pet in pets">
+        <li>{{ pet.id }}</li>
+        <li>{{ pet.name }}</li>
+        <li>{{ pet.dateOfBirth }}</li>
+    </ul>
+</div>
