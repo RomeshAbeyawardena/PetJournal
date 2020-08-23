@@ -24,8 +24,8 @@
     <div>
         <input type="number"
                placeholder="YYYY"
-               min="1930"
-               max="2019"
+               :min="configuration.minimumYear"
+               :max="configuration.maximumYear"
                maxlength="4"
                v-model="date.year"
                v-on:keydown="processKey"

@@ -3,7 +3,9 @@
 const loaderComponent = new VueComponentRegistration("date-picker", {
     template: require("./../../components/date-picker.html"),
     props: {
-        value: Date
+        value: Date,
+        minimumYear: Number,
+        maximumYear: Number
     },
     computed: {
         getDate() {
@@ -15,10 +17,14 @@ const loaderComponent = new VueComponentRegistration("date-picker", {
     },
     data() {
         return {
+            configuration: {
+                minimumYear: this.minimumYear,
+                maximumYear: this.maximumYear
+            },
             date: {
                 day: this.value?.getDate(),
                 month: this.value?.getMonth() + 1,
-                year: this.value?.getYear()
+                year: this.value?.getFullYear()
             }
         }
     },
