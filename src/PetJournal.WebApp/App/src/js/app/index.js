@@ -23,10 +23,11 @@ const app = {
             store: store,
             data: {
                 hasPetsLoaded: false,
+                hasPetTypesLoaded: false,
                 hasChanges: false
             },
             methods: {
-                ...mapActions(['loadPets'])
+                ...mapActions(['loadPets', 'loadPetTypes'])
             },
             watch: {
                 hasChanges: function () {
@@ -38,6 +39,7 @@ const app = {
             created() {
                 var context = this;
                 this.loadPets().then(() => context.hasPetsLoaded = true);
+                this.loadPetTypes().then(() => context.hasPetTypesLoaded = true);
             }
         }
     }

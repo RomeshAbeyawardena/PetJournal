@@ -1,7 +1,6 @@
 import petService from "../services/pet-service";
 import { Pet } from "../model/pet";
 import { utility } from "../utility";
-import Promise from "promise";
 
 const findPet = (state, id) => {
     return state.pets.find(pet => pet.id === id);
@@ -49,16 +48,16 @@ const petDetails = {
         loadPets(context) {
             return petService
                 .getPets()
-                .then((pets) => { 
-                    context.commit('loadPets', pets.data);
-                    context.commit('setIsPetsLoaded', pets.data.length > 0)
-                    context.commit("setLastUpdated", pets.lastUpdated)
+                .then((payload) => { 
+                    context.commit('loadPets', payload.data);
+                    context.commit('setIsPetsLoaded', payload.data.length > 0)
+                    context.commit("setLastUpdated", payload.lastUpdated)
                 });
         },
         savePet({commit, state}, pet) {
             
             var petModel = new Pet(pet.id, pet.name, pet.dateOfBirth);
-
+            
             var foundPet = findPet(state, petModel.id);
 
             if (foundPet) {

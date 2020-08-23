@@ -17,7 +17,9 @@ export const VuexRegistration = (vueInstance, modules) => {
 export const utility = {
     updateChanges(source, destination) {
         for (var property in source) {
-            destination[property] = source[property];
+            if (destination[property] !== source[property]) {
+                destination[property] = source[property];
+            }
         }
     },
     wait(ms) {
