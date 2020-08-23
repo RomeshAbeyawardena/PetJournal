@@ -2,16 +2,18 @@
 import { mapActions, mapGetters } from 'vuex';
 
 const petDetailsComponent = new VueComponentRegistration("add-pet", {
-    template: require("./../../components/add-pet.html"),
-    props: { id:Number },
+    template: require("./../../components/save-pet.html"),
+    props: { petId:Number },
     data() {
-        return {
+        var values = {
             newPet: {
-                id: this.id,
+                id: this.petId,
                 name: "",
-                dateOfBirth: ""
+                dateOfBirth: new Date()
             }
-        }
+        };
+
+        return values;
     },
     computed: {
         ...mapGetters(['pets','pet', 'isPetsLoaded'])

@@ -3,24 +3,23 @@ import { mapActions, mapGetters } from 'vuex';
 
 const petDetailsComponent = new VueComponentRegistration("pet-details", {
     template: require("./../../components/pet-details.html"),
-    props: { id:Number },
-    watch: {
-        id(newValue) {
-            this.petId = newValue;
-            this.selectedPet = this.pet(newValue);
-        }
-    },
+    props: { petId:Number },
     data() {
         return {
-            petId: this.id,
-            selectedPet: null
+            id: this.petId
         }
     },
     computed: {
+        selectedPet() {
+            return this.pet(this.id);
+        },
         ...mapGetters(['pets','pet', 'isPetsLoaded'])
     },
     methods: {
-        ...mapActions(['savePet'])
+        ...mapActions(['savePet']),
+        viewPet(id) {
+            this.id = id;
+        }
     }
 });
 

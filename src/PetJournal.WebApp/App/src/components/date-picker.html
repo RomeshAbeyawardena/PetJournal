@@ -1,0 +1,34 @@
+﻿<div class="form date-of-birth-form">
+    <div>
+        <input type="number"
+               placeholder="DD"
+               min="1"
+               max="31"
+               maxlength="2"
+               v-model="date.day"
+               v-on:keydown="processKey"
+               v-on:keyup="onChange" />
+        <span>/</span>
+    </div>
+    <div>
+        <input type="number"
+               placeholder="MM"
+               min="1"
+               max="12"
+               maxlength="2"
+               v-model="date.month"
+               v-on:keydown="processKey"
+               v-on:keyup="onChange" />
+        <span>/</span>
+    </div>
+    <div>
+        <input type="number"
+               placeholder="YYYY"
+               min="1930"
+               max="2019"
+               maxlength="4"
+               v-model="date.year"
+               v-on:keydown="processKey"
+               v-on:keyup="onChange" />
+    </div>
+</div>

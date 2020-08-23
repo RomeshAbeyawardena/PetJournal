@@ -1,7 +1,11 @@
 import petService from "../services/pet-service";
 import { Pet } from "../model/pet";
+import { utility } from "../utility";
+import Promise from "promise";
 
-const findPet = (state, id) => state.pets.find(pet => pet.id === id);
+const findPet = (state, id) => {
+    return state.pets.find(pet => pet.id === id);
+}
 
 const petDetails = {
     state: {
@@ -16,9 +20,9 @@ const petDetails = {
             state.pets.push(pet);
         },
         updatePet(state, pet) {
-            var foundPet = findPet(state, pet.Id);
+            var foundPet = findPet(state, pet.id);
             if (foundPet) {
-                foundPet = pet;
+                utility.updateChanges(pet, foundPet);
             }
         },
         loadPets(state, pets) {
@@ -30,7 +34,8 @@ const petDetails = {
             return state.pets;
         },
         pet:(state) => (id) => {
-            return findPet(state, id);
+            var pet = findPet(state, id);
+            return pet;
         },
         isPetsLoaded(state) {
             return state.isLoaded;
@@ -46,9 +51,12 @@ const petDetails = {
                 });
         },
         savePet({commit, state}, pet) {
-
+            
             var petModel = new Pet(pet.id, pet.name, pet.dateOfBirth);
-            if (findPet(state, pet.id)) {
+
+            var foundPet = findPet(state, petModel.id);
+
+            if (foundPet) {
                 commit('updatePet', petModel);
             }
             else {

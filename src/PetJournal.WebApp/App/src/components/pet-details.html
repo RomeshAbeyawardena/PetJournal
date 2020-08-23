@@ -1,13 +1,21 @@
 <div>
     <p>Pet Details</p>
+    <loader v-show="!isPetsLoaded"></loader>
     <ul v-show="selectedPet">
-        <li>{{ selectedPet?.id }}</li>
+        <li>
+            {{ selectedPet?.id }}
+
+        </li>
         <li>{{ selectedPet?.name }}</li>
         <li>{{ selectedPet?.dateOfBirth }}</li>
     </ul>
-    <ul v-for="pet in pets">
-        <li>{{ pet.id }}</li>
+    <a v-on:click="viewPet()" href="#">Back</a>
+    <ul v-show="!selectedPet" v-for="pet in pets">
+        <li>
+            <a href="#" v-on:click="viewPet(pet.id)">
+                {{ pet.id }}
+            </a>
+        </li>
         <li>{{ pet.name }}</li>
-        <li>{{ pet.dateOfBirth }}</li>
     </ul>
 </div>
