@@ -10,7 +10,8 @@ const petDetailsComponent = new VueComponentRegistration("add-pet", {
                 id: this.petId,
                 name: "",
                 dateOfBirth: new Date()
-            }
+            },
+            petType: null 
         };
 
         return values;

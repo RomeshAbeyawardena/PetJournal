@@ -35,7 +35,7 @@ const petDetails = {
     },
     getters: {
         petTypes(state) {
-            return state.petsTypes;
+            return state.petTypes;
         },
         petType:(state) => (id) => {
             var pet = findPet(state, id);

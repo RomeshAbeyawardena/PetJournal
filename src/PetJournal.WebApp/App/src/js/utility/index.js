@@ -1,7 +1,7 @@
 ﻿import Vuex from "vuex";
 
-export const VueComponentRegistration = function(componentName, componentConfig) {
-    this.registerComponent = function(vueInstance) {
+export const VueComponentRegistration = function (componentName, componentConfig) {
+    this.registerComponent = function (vueInstance) {
         vueInstance.component(componentName, componentConfig);
     }
 }
@@ -22,11 +22,12 @@ export const utility = {
             }
         }
     },
-    wait(ms) {
-        var d = new Date();
-        var d2 = null;
-        do { d2 = new Date(); }
-        while(d2-d < ms);
+    find(items, field, text) {
+        text = text.toLowerCase().split(' ');
+        return items.filter(function (item) {
+            return text.every(function (el) {
+                return item[field].toLowerCase().indexOf(el) > -1;
+            });
+        });
     }
-
 }

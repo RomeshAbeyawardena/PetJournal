@@ -57,36 +57,43 @@ input[type=number] {
   margin-right: 0.5rem;
   cursor: pointer;
 }
-
-.date-of-birth-form {
+.form .date-of-birth-form {
   background-color: #2C4870;
   display: inline-block;
   border-radius: 0.4rem;
   border: 0.09rem solid #999;
   padding: 0;
   margin: 0;
-  width: 12.5rem;
+  width: 13.3rem;
 }
-.date-of-birth-form div {
+.form .date-of-birth-form div {
   display: inline-block;
 }
-.date-of-birth-form label {
+.form .date-of-birth-form label {
   margin: 0;
   width: 3rem;
 }
-.date-of-birth-form div {
+.form .date-of-birth-form div {
   padding: 0;
   margin: 0;
 }
-.date-of-birth-form input {
+.form .date-of-birth-form input {
   width: 2.4rem;
   border: none !important;
   margin: 0 !important;
   text-align: center;
 }
-
-.form-control {
+.form .form-control {
   display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+.form .pet-type-input + ul {
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  padding: 1rem;
+  list-style: none;
 }
 
 .aa-dropdown-menu {

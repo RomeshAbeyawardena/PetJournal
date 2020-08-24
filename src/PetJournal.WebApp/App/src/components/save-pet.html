@@ -12,6 +12,11 @@
         <date-picker v-model="newPet.dateOfBirth"></date-picker>
     </div>
     <div>
+        <label>Date of Birth</label>
+        <pet-type-input v-model="petType"></pet-type-input>
+    </div>
+
+    <div>
         <input type="button" value="Save Pet" v-on:click="savePet(newPet)" />
     </div>
 </div>

@@ -63,43 +63,54 @@ input[type='number'] {
         margin-right: 0.5rem;
         cursor: pointer;
     }
-}
 
-
-.date-of-birth-form {
-    background-color: #2C4870;
-    display: inline-block;
-    border-radius: 0.4rem;
-    border: 0.09rem solid #999;
-    padding: 0;
-    margin: 0;
-    width: 12.5rem;
-
-
-    div {
+    .date-of-birth-form {
+        background-color: #2C4870;
         display: inline-block;
-    }
-
-    label {
-        margin: 0;
-        width: 3rem;
-    }
-
-    div {
+        border-radius: 0.4rem;
+        border: 0.09rem solid #999;
         padding: 0;
         margin: 0;
+        width: 13.3rem;
+
+
+        div {
+            display: inline-block;
+        }
+
+        label {
+            margin: 0;
+            width: 3rem;
+        }
+
+        div {
+            padding: 0;
+            margin: 0;
+        }
+
+        input {
+            width: 2.4rem;
+            border: none !important;
+            margin: 0 !important;
+            text-align: center;
+        }
     }
 
-    input {
-        width: 2.4rem;
-        border: none !important;
-        margin: 0 !important;
-        text-align: center;
+    .form-control {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
     }
-}
 
-.form-control {
-    display: inline-block;
+    .pet-type-input {
+        + ul {
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 1rem;
+            list-style:none;
+        }
+    }
 }
 
 .aa-dropdown-menu {
